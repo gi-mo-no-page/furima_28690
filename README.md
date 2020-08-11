@@ -2,18 +2,22 @@
 
 ## users テーブル
 
-| Column   | Type   | Options                   |
-| -------- | ------ | ------------------------- |
-| name     | string | null:false                |
-| email    | string | null:false , unique: true |
-| password | string | null:false                |
+| Column           | Type   | Options                   |
+| ---------------- | ------ | ------------------------- |
+| nickname         | string | null:false                |
+| first_name       | string | null:false                |
+| family_name	     | string | null:false                |
+| first_name_kana  | string | null:false                |
+| family_name_kana | string | null:false                |
+| email            | string | null:false , unique: true |
+| password         | string | null:false                |
 
 ### Association
 - has_many :items
+- has_many :purchases
 - has_many :selling_items, class_name: "items", foreign_key:     "seller_id", -> { where("buyer_id is NULL") }
 - has_many :bought_items, class_name: "items", foreign_key: "buyer_id"
 - has_many :sold_items, class_name: "items", foreign_key: "seller_id", -> { where("buyer_id is not NULL") }
-- has_one :credit_card, dependent: :destroy
 - has_one :delivery_address, dependent: :destroy
 
 
@@ -34,6 +38,7 @@
 | buyer_id         | references | foreign_key: true             |
 
 ### Association
+- has_many :items
 - belongs_to:user
 - belongs_to :seller, class_name: "user", foreign_key: "seller_id"
 - belongs_to :buyer, class_name: "user", foreign_key: "buyer_id"
@@ -44,18 +49,15 @@
 - belongs_to_active_hash : delivery_time
 
 
-## credit_cards テーブル
+## purchases テーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| card_number      | integer    | null:false, unique: true       |
-| expiration_year  | integer    | null:false                     |
-| expiration_month | integer    | null:false                     |
-| security_code    | integer    | null:false                     |
-| user             | references | null:false, foreign_key: true |
+| Column   | Type       | Options                       |
+| -------- | ---------- | ----------------------------- |
+| user_id  | references | null:false, foreign_key: true |
+| item_id  | references | null:false, foreign_key: true |
 
-### Association
 - belongs_to:user
+- belongs_to:item
 
 
 ## delivery_address テーブル
