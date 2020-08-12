@@ -11,7 +11,7 @@
 | family_name_kana | string  | null:false                |
 | email            | string  | null:false , unique: true |
 | password         | string  | null:false                |
-| birth_date       | integer | null:false                |
+| birth_date       | date    | null:false                |
 
 
 ### Association
@@ -66,7 +66,7 @@
 | street_number | string     | null:false                     |
 | building_name | string     |                                |
 | phone_number  | string     | null:false                     |
-
+| user_id       | integer    | null:false, foreign_key: true  |
 ### Association
 - belongs_to: purchase
 - belongs_to_active_hash : prefectures
