@@ -1,15 +1,14 @@
 class Category < ActiveHash::Base
   self.data = [
-    { id: 1, name: '--' },
-    { id: 2, name: 'レディース' },
-    { id: 3, name: 'メンズ' },
-    { id: 4, name: 'ベビー・キッズ' },
-    { id: 5, name: 'インテリア・住まい・小物' },
-    { id: 6, name: '本・音楽・ゲーム' },
-    { id: 7, name: 'おもちゃ・ホビー・グッズ' },
-    { id: 8, name: '家電・スマホ・カメラ' },
-    { id: 9, name: 'スポーツ・レジャー' },
-    { id: 10, name: 'ハンドメイド' },
-    { id: 11, name: 'その他' }
+    { id: 1, category: 'レディース' },
+    { id: 2, category: 'メンズ' },
+    { id: 3, category: 'ベビー・キッズ' },
+    { id: 4, category: 'インテリア・住まい・小物' },
+    { id: 5, category: '本・音楽・ゲーム' },
+    { id: 6, category: 'おもちゃ・ホビー・グッズ' },
+    { id: 7, category: '家電・スマホ・カメラ' },
+    { id: 8, category: 'スポーツ・レジャー' },
+    { id: 9, category: 'ハンドメイド' },
+    { id: 10, category: 'その他' }
   ]
 end
