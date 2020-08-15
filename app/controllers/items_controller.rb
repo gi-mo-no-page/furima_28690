@@ -2,10 +2,11 @@ class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
 
   def index
-    @items = Item.order("created_at DESC")
+    @items = Item.all.order(id: "DESC")
   end
 
   def new
+    @item = Item.new
   end
 
   def create
@@ -20,7 +21,7 @@ class ItemsController < ApplicationController
 
   private
    def item_params
-    params.require(:message).permit(:name, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :name, :introduction, :category_id, :status_id, :shopping_charges_id, :shopping_region_id, :delivery_time_id, :price).merge(user_id: current_user.id)
    end
 
 
