@@ -8,7 +8,9 @@
     </h1>
   </div>
 
-     <%= render 'shared/error_messages', model: f.object %>
+    <% if @user.errors.any? %>
+        <%= render 'shared/error_messages', model: f.object %>
+    <% end %>
 
   <div class="form-group">
     <div class='form-text-wrap'>
