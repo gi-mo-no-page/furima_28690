@@ -24,12 +24,12 @@
     </div>
     <% if user_signed_in? %>
       <% if current_user.id == @item.user.id %>
-        <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
+        <%= link_to '商品の編集', "edit_item_path(item.id)", method: :get, class: "item-red-btn" %>
         <p class='or-text'>or</p>
         <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
       <% end %>
     <% end %>
-    
+
     <% if user_signed_in? && current_user.id != @item.user.id %>
     <%# 商品が売れていない場合はこちらを表示しましょう %>
     <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
@@ -37,7 +37,7 @@
     <% end %>
 
     <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+      <span><%= @item.introduction %></span>
     </div>
     <table class="detail-table">
       <tbody>
@@ -47,60 +47,15 @@
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value">
-            <% case @item.category_id %>
-              <% when 1 %>
-              <%= "レディース" %>
-              <% when 2 %>
-              <%= "メンズ" %>
-              <% when 3 %>
-              <%= "ベビー・キッズ" %>
-              <% when 4 %>
-              <%= "インテリア・住まい・小物" %>
-              <% when 5 %>
-              <%= "本・音楽・ゲーム" %>
-              <% when 6 %>
-              <%= "おもちゃ・ホビー・グッズ" %>
-              <% when 7 %>
-              <%= "家電・スマホ・カメラ" %>
-              <% when 8 %>
-              <%= "スポーツ・レジャー" %>
-              <% when 9 %>
-              <%= "ハンドメイド" %>
-              <% else %>
-              <%= "その他" %>
-            <% end %>
-          </td>
+          <td class="detail-value"><%= @item.category[:category]  %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value">
-           <% case @item.status_id %>
-              <% when 1 %>
-              <%= "新品・未使用" %>
-              <% when 2 %>
-              <%= "未使用に近い" %>
-              <% when 3 %>
-              <%= "目立った傷や汚れなし" %>
-              <% when 4 %>
-              <%= "やや傷や汚れあり" %>
-              <% when 5 %>
-              <%= "傷や汚れあり" %>
-              <% when 6 %>
-              <%= "全体的に状態が悪い" %>
-              <% end %>
-          </td>
+          <td class="detail-value"><%= @item.status[:status]  %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value">
-          <% case @item.shopping_charges_id %>
-              <% when 1 %>
-              <%= "着払い(購入者負担)" %>
-              <% when 2 %>
-              <%= "送料込み(出品者負担)" %>
-              <% end %>
-          </td>
+          <td class="detail-value"><%= @item.shopping_charges[:shopping_charges] %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
@@ -109,17 +64,8 @@
           </td>
         </tr>
         <tr>
-          <th class="detail-item">発送日の目安</th>
-          <td class="detail-value">
-          <% case @item.delivery_time_id %>
-              <% when 1 %>
-              <%= "1~2日で発送" %>
-              <% when 2 %>
-              <%= "2~3日で発送" %>
-              <% when 3 %>
-              <%= "4~7日で発送" %>
-              <% end %>
-          </td>
+          <th class="detail-item">配送料の負担</th>
+          <td class="detail-value"><%= @item.delivery_time[:delivery_time] %></td>
         </tr>
       </tbody>
     </table>
