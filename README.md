@@ -26,11 +26,11 @@
 | img              | string     | null:false                    |
 | name             | string     | null:false                    |
 | introduction     | text       | null:false                    |
-| category         | integer    | null:false, foreign_key: true | 
-| status           | integer    | null:false, foreign_key: true |
-| shipping_charges | integer    | null:false, foreign_key: true |
-| shipping_region  | integer    | null:false, foreign_key: true |
-| delivery_time    | integer    | null:false, foreign_key: true |
+| category         | integer    | null:false                    | 
+| status           | integer    | null:false                    |
+| shipping_charges | integer    | null:false                    |
+| shipping_region  | integer    | null:false                    |
+| delivery_time    | integer    | null:false                    |
 | price            | integer    | null:false                    |
 | user_id          | integer    | null:false, foreign_key: true |
 
@@ -56,12 +56,12 @@
 - belongs_to: item
 - has_one: delivery_address
 
-## delivery_address テーブル
+## address テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | post_code     | string     | null:false                     |
-| prefectures   | integer    | null:false, foreign_key: true  |
+| prefectures   | integer    | null:false                     |
 | municipality  | string     | null:false                     |
 | street_number | string     | null:false                     |
 | building_name | string     |                                |
