@@ -8,7 +8,7 @@ class Payform
     validates :prefectures_id, numericality: { other_than: 0 }
     validates :municipality
     validates :street_number
-    validates :phone_number, format: {with: /\A(0{1}\d{10})\z/}
+    validates :phone_number, format: {with: /\A\d{10}$|^\d{11}\z/}
     validates :user_id
     validates :item_id
   end
