@@ -31,7 +31,13 @@
     </div>
     <%# /支払額の表示 %>
 
+<<<<<<< Updated upstream:app/views/transactions/index.html.erb
     <%= form_with id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+=======
+    <%= form_with model:@purchase, url: item_purchases_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+     <%= render 'shared/error_messages', model: f.object %>
+    
+>>>>>>> Stashed changes:app/views/purchases/index.html.erb
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
