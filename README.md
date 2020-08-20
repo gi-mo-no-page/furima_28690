@@ -54,19 +54,19 @@
 ### Association
 - belongs_to: user
 - belongs_to: item
-- has_one: delivery_address
+- has_one: address
 
 ## address テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| post_code     | string     | null:false                     |
-| prefectures   | integer    | null:false                     |
-| municipality  | string     | null:false                     |
-| street_number | string     | null:false                     |
-| building_name | string     |                                |
-| phone_number  | string     | null:false                     |
-| purchase_id   | integer    | null:false, foreign_key: true  |
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| post_code      | string     | null:false                     |
+| prefectures_id | integer    | null:false                     |
+| municipality   | string     | null:false                     |
+| street_number  | string     | null:false                     |
+| building_name  | string     |                                |
+| phone_number   | string     | null:false                     |
+| purchase_id    | integer    | null:false, foreign_key: true  |
 ### Association
 - belongs_to: purchase
 - belongs_to_active_hash : prefectures
