@@ -17,6 +17,7 @@ class Item < ApplicationRecord
     validates :status_id
     validates :shopping_charges_id
     validates :shopping_region_id
+    validates :delivery_time_id
     validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
   end
 
