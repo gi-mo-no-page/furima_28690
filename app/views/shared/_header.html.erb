@@ -4,11 +4,11 @@
     <%= link_to image_tag("furima-logo-color.png", class:"furima-icon"), "/" %>
 
     <%= form_with(url: search_items_path, local: true, method: :get, class: "search-form") do |form| %>
-  <%= form.text_field :keyword, placeholder: "キーワードから探す", class: "search-input" %>
-  <button class="search-button">
+    <%= form.text_field :keyword, placeholder: "キーワードから探す", class: "input-box" %>
+    <button class="search-button">
       <%= image_tag "search.png", class:"search-icon" %>
-  </button>
-  <% end %>
+    </button>
+    <% end %>
     
     <%
 =begin%>

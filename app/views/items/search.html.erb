@@ -1,5 +1,10 @@
 <%= render "shared/header" %>
 <ul class='item-lists'>
+<% if @items.length == 0 %>
+<div class="none">
+  <h1>— 該当する商品が見つかりません —</h1>
+</div>
+<% else %>
 <% @items.each do |item|%>
       <li class='list'>
         <%= link_to item_path(item.id) do %>
@@ -29,5 +34,9 @@
     </li>
     <% end %>
     </ul>
-    <%=link_to 'もどる', root_path %>
+    <% end %>
+
+
+
+
     <%= render "shared/second-footer" %>

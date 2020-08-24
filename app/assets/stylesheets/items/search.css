@@ -1,0 +1,13 @@
+.back-btn {
+  background: #aaa;
+  border: 1px solid #aaa;
+  color: #fff;
+  padding: 16px 15%;
+  text-decoration: none;
+}
+
+.none {
+  color: rgb(0, 140, 255);
+  font-size: 30px;
+  font-family: 'Courier New', Courier, monospace;
+}

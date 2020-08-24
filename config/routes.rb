@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   resources :items do
     resources :purchases, only:[:index, :create]
+    resources :comments, only: :create
     collection do
       get 'search'
     end
