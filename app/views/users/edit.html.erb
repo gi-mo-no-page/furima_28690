@@ -1,0 +1,21 @@
+<div class="AccountPage__form">
+    <%= form_for(current_user) do |f| %>
+      <div class="FormField">
+        <div class="FormField__name">
+          <%= f.label :nickname %>
+        </div>
+        <div class="FormField__name">
+          <%= f.text_field :nickname, autofocus: true %>
+        </div>
+      </div>
+      <div class="FormField">
+        <div class="FormField__email">
+          <%= f.label :email %>
+        </div>
+        <div class="FormField__email">
+          <%= f.email_field :email %>
+        </div>
+        <br>
+      </div>
+      <%= f.submit "更新する" %>
+       <% end %>

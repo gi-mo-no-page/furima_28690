@@ -1,34 +1,46 @@
 <div class="AccountPage">
   <div class="AccountPage__title">
-    <h1>マイページ</h1>
+    <h1>
+    <%= current_user.nickname %>さんのマイページ
+    </h1>
   </div><br>
   <div class="Account__info">
     <h2>ユーザー情報</h2>
   </div>
-  <div class="AccountPage__form">
-    <%= form_for(current_user) do |f| %>
-      <div class="FormField">
-        <div class="FormField__name">
-          <%= f.label :nickname %>
-        </div>
-        <div class="FormField__name">
-          <%= f.text_field :nickname, autofocus: true %>
-        </div>
-      </div>
-      <div class="FormField">
-        <div class="FormField__email">
-          <%= f.label :email %>
-        </div>
-        <div class="FormField__email">
-          <%= f.email_field :email %>
-        </div>
-        <br>
-      </div>
-      <%= f.submit "更新する" %>
-      <br>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete%>
-      <br>
-      <%= link_to "商品一覧へ戻る", root_path%>
-    <% end %>
+  <table class="detail-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">ユーザー</th>
+          <td class="detail-value"><%= current_user.nickname  %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">Eメール</th>
+          <td class="detail-value"><%= current_user.email  %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">パスワード</th>
+          <td class="detail-value"><%= current_user.password %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">生年月日</th>
+          <td class="detail-value"><%= current_user.birth_date %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">発送元の地域</th>
+          <td class="detail-value">
+          <%=  %>
+          </td>
+        </tr>
+        <tr>
+          <th class="detail-item">配送料の負担</th>
+          <td class="detail-value"><%=  %></td>
+        </tr>
+      </tbody>
+    </table>
+      
+  <%= link_to "更新する", edit_user_path %>
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete%>
+  <%= link_to "商品一覧へ戻る", root_path%>
+   
   </div>
 </div>
