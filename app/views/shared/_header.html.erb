@@ -9,21 +9,15 @@
       <%= image_tag "search.png", class:"search-icon" %>
     </button>
     <% end %>
-    
-    <%
-=begin%>
- <form class="search-form" action="#">
-      <input class='input-box' placeholder='キーワードから探す'>
-      <button class="search-button">
-        <%= image_tag "search.png", class:"search-icon" %>
-      </button>
-    </form> 
-<%
-=end%>
   </div>
+  
   <div class='nav'>
+    <ul class="show-lists" id="pull-down">
+        <li class="pull-down-list"><%= link_to "レディース", "#" %></li>
+        
+      </ul>
     <ul class='lists-left'>
-      <li><%= link_to 'カテゴリー', "#", class: "category-list" %></li>
+      <li><%= link_to 'カテゴリー', types_path, class: "category-list" %></li>
       <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
     </ul>
     <ul class='lists-right'>

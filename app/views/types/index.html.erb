@@ -1,0 +1,10 @@
+<%= render "shared/header" %>
+
+<h1>ALLカテゴリー</h1>
+
+ <% @parents.each do |parent| %>
+  <div>
+  <%= link_to  parent.name, root_path %>
+  <div>
+<% end %>
+ <%= render "shared/second-footer"%>

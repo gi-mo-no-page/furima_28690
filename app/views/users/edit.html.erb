@@ -17,5 +17,15 @@
         </div>
         <br>
       </div>
+      <div class="FormField">
+        <div class="FormField__image">
+          <%= f.label :image %>
+        </div>
+        <div class="FormField__image">
+          <%= f.file_field :image %>
+        </div>
+        <br>
+      </div>
       <%= f.submit "更新する" %>
+      <%= link_to  "もどる", user_path(current_user) %>
        <% end %>

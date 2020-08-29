@@ -20,7 +20,7 @@ RSpec.describe Payform, type: :model do
   it 'prefectures_idが空だと保存できないこと' do
     @payform.prefectures_id = nil
     @payform.valid?
-    expect(@payform.errors.full_messages).to include("Prefectures can't be blank", "Prefectures is not a number")
+    expect(@payform.errors.full_messages).to include("Prefectures can't be blank", 'Prefectures is not a number')
   end
   it 'municipalityが空だと保存できないこと' do
     @payform.municipality = nil
@@ -48,15 +48,13 @@ RSpec.describe Payform, type: :model do
     expect(@payform.errors.full_messages).to include("Item can't be blank")
   end
   it 'post_codeに"-"がないと保存できないこと' do
-    @payform.post_code = 1111111
+    @payform.post_code = 1_111_111
     @payform.valid?
-    expect(@payform.errors.full_messages).to include("Post code is invalid")
+    expect(@payform.errors.full_messages).to include('Post code is invalid')
   end
   it 'phone_numberが12桁以上あると保存できないこと' do
-    @payform.phone_number = 123456789101
+    @payform.phone_number = 123_456_789_101
     @payform.valid?
-    expect(@payform.errors.full_messages).to include("Phone number is invalid")
+    expect(@payform.errors.full_messages).to include('Phone number is invalid')
   end
-
-  
 end

@@ -1,46 +1,69 @@
+<%= render "shared/header" %>
 <div class="AccountPage">
   <div class="AccountPage__title">
     <h1>
     <%= current_user.nickname %>さんのマイページ
     </h1>
-  </div><br>
+  </div>  
+ <br>
   <div class="Account__info">
-    <h2>ユーザー情報</h2>
+    <h2>
+    <%= link_to "情報を更新する", edit_user_path %>
+    </h2>
   </div>
-  <table class="detail-table">
+  <table class="detail-table1">
       <tbody>
         <tr>
-          <th class="detail-item">ユーザー</th>
-          <td class="detail-value"><%= current_user.nickname  %></td>
+          <th class="detail-item1">画像</th>
+          <% if current_user.image != nil %>
+          <td class="detail-value1"><%= current_user.image %></td>
+          <% end %>
         </tr>
         <tr>
-          <th class="detail-item">Eメール</th>
-          <td class="detail-value"><%= current_user.email  %></td>
+          <th class="detail-item1">ユーザー</th>
+          <td class="detail-value1"><%= current_user.nickname  %></td>
         </tr>
         <tr>
-          <th class="detail-item">パスワード</th>
-          <td class="detail-value"><%= current_user.password %></td>
+          <th class="detail-item1">Eメール</th>
+          <td class="detail-value1"><%= current_user.email  %></td>
         </tr>
         <tr>
-          <th class="detail-item">生年月日</th>
-          <td class="detail-value"><%= current_user.birth_date %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">発送元の地域</th>
-          <td class="detail-value">
-          <%=  %>
-          </td>
-        </tr>
-        <tr>
-          <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%=  %></td>
+          <th class="detail-item1">生年月日</th>
+          <td class="detail-value1"><%= current_user.birth_date %></td>
         </tr>
       </tbody>
     </table>
-      
-  <%= link_to "更新する", edit_user_path %>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete%>
-  <%= link_to "商品一覧へ戻る", root_path%>
-   
+    <div class="AccountPage__title">
+    <h1>
+    出品した商品
+    </h1>
+  </div><br>
+    <ul class='item-lists'>
+     <% @items.each do |item|%>
+      <li class='list'>
+        <%= link_to item_path(item.id) do %>
+         <div class='item-img-content'>
+          <%= image_tag item.image, class: "item-img" %>
+          <% if item.purchase != nil %>
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div>
+          <% end %>
+         </div>
+         <div class='item-info'>
+          <h3 class='item-name'>
+            <%= item.name %>
+          </h3>
+          <div class='item-price'>
+          </div>
+         </div>
+       <% end %>
+      </li>
+     <% end %>
+    </ul>
+  <div class="Account__info">
+   <%= link_to "TOPへ戻る", root_path%>
+   </div>
   </div>
 </div>
+<%= render "shared/second-footer"%>

@@ -30,10 +30,8 @@
         <%= link_to '購入画面に進む', item_purchases_path(@item), class:"item-red-btn"%>
       <% end %>
 
-    <%# 商品が売れていない場合はこちらを表示しましょう %>
-    <%# //商品が売れていない場合はこちらを表示しましょう %>
 
-  <% if user_signed_in? && current_user.id != @item.user.id %>
+   <% if user_signed_in? && current_user.id != @item.user.id %>
     <div class="item-explain-box">
       <span><%= @item.introduction %></span>
     </div>
@@ -41,7 +39,7 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @item.user.nickname  %></td>
+          <td class="detail-value"><%= @item.user.nickname %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
@@ -69,8 +67,13 @@
     </table>
     <div class="option">
       <div class="favorite-btn">
-        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <span>お気に入り 0</span>
+<% if Like.find_by(user_id: current_user.id, item_id: @item.id) %>
+  <%= link_to (image_tag "star.png"), "/items/#{@item.id}/likes/#{current_user.id}", method: :delete ,class:"favorite-star-icon", width:"20",height:"20"%>
+<% else %>
+  <%= link_to (image_tag "star.png"), item_likes_path(@item.id),method: :post, class:"favorite-star-icon" ,width:"20",height:"20" %>
+ <% end %>
+        
+        <span>お気に入り<%= @item.likes.count %></span>
       </div>
       <div class="report-btn">
         <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
@@ -78,62 +81,43 @@
       </div>
      </div>
    </div>
-  <% end %>
-  <%# /商品の概要 %>
+   <% end %>
+   <%# /商品の概要 %>
 
-  <div class="comment-box">
-    <%
-=begin%>
- <form>
-      <textarea class="comment-text"></textarea>
-      <p class="comment-warn">
-        相手のことを考え丁寧なコメントを心がけましょう。
-        <br>
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      </p>
-      <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-    </form> 
-<%
-=end%>
-
-  <div class="comment-box">
-    <% if current_user %>
-      <%= form_with(model: [@item, @comment], local: true) do |form| %>
-        <%= form.text_area :text, placeholder: "相手のことを考え丁寧なコメントを心がけましょう。", class:"comment-text", rows: "2"%>
-        <%= form.submit value:"コメントする" ,class:"comment-btn" %>
+  
+   <div class="comment-box">
+    <% if user_signed_in? %>
+      <%= form_with(model: [@item, @comment], local: true, id: "form") do |form| %>
+        <%= form.text_area :text, placeholder: "相手のことを考え丁寧なコメントを心がけましょう。", class:"comment-text", rows: "2",id: "text"%>
+        <%= form.submit value:"コメントする" ,class:"comment-btn", id: "submit"%>
       <% end %>
     <% else %>
       <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
     <% end %>
-    <div class="comments">
-      <h4>＜コメント一覧＞</h4>
+    <div class="comments" >
+      <h4 class="comment-top">＜コメント一覧＞</h4>
       <% if @comments %>
-        <% @comments.each do |comment| %>
-          <p>
-            <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
-            <%= comment.text %>
-          </p>
+        <% @comments.reverse_each do |comment| %>
+          <ul class="comment_group">
+            <li class="comment" ><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：<%= comment.text %></li>
+          </ul>
         <% end %>
       <% end %>
     </div>
-  </div>
+   </div>
 
 
 
-
-  </div>
-  <div class="links">
+   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
     </a>
     <a href="#" class="change-item-btn">
       後ろの商品 ＞
     </a>
+   </div>
+   <a href="#" class='another-item'><%= "商品のカテゴリー名" %>をもっと見る</a>
   </div>
-  <a href="#" class='another-item'><%= "商品のカテゴリー名" %>をもっと見る</a>
 </div>
 
 <%= render "shared/footer" %>
